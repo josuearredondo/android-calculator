@@ -22,8 +22,8 @@ public class CalculatorActivity extends AppCompatActivity {
         Button btnC = (Button) findViewById(R.id.btnC);
         Button btnDiv = (Button) findViewById(R.id.btnDiv);
         Button btnMult = (Button) findViewById(R.id.btnMult);
-        Button btnAdd = (Button) findViewById(R.id.btnSub);
-        Button btnSub = (Button) findViewById(R.id.btnAdd);
+        Button btnAdd = (Button) findViewById(R.id.btnAdd);
+        Button btnSub = (Button) findViewById(R.id.btnSub);
         Button btnComma = (Button) findViewById(R.id.btnComma);
         Button btnEqual = (Button) findViewById(R.id.btnEqual);
         Button btnZero = (Button) findViewById(R.id.btnZero);
@@ -58,33 +58,51 @@ public class CalculatorActivity extends AppCompatActivity {
         View.OnClickListener myClickButtonListener= new View.OnClickListener() {
             public void onClick(View v) {
                 String tag = (String) v.getTag();
-                if (tvDigit.getText().equals("0")){
-                    tvDigit.setText("");
-                    tvDigit.append(tag);
-                } else {
-                    switch (tag) {
-                        case "c":
-                            tvDigit.setText("0");
-                            break;
-                        case "/":
-
-                            break;
-                        case "*":
-
-                            break;
-                        case "-":
-
-                            break;
-                        case "+":
-
-                            break;
-                        case ".":
-
-                            break;
-                        default: tvDigit.append(tag);
-                            break;
+                if(tag.contains("/")){
+                    Log.e("Test entree", tag);
+                }
+                else if (tag.contains("*")) {
+                    Log.e("Test entree", tag);
+                }
+                else if (tag.contains("-")) {
+                    Log.e("Test entree", "-");
+                }
+                else if (tag.contains("+")) {
+                    Log.e("Test entree", "+");
+                }
+                else if (tag.contains(".")) {
+                    Log.e("Test entree", tag.toString());
+                }
+                else if (tag.contains("=")) {
+                    Log.e("Test entree", tag.toString());
+                }
+                else {
+                    Log.e("Test entree", tag.toString());
+                    /** If the C button is pushed*/
+                    if (tag == "c") {
+                        tvDigit.setText("0");
+                        //Log.e("Test tag length C", String.valueOf(tvDigit.getText().length()));
+                    } /** If any number is pushed*/
+                    else if ((Integer.parseInt(tag) >= 0) && (Integer.parseInt(tag) < 10)) {
+                            /** If there is one digit*/
+                        if (tvDigit.length() == 1) {
+                                /** If the first number is zero we can't add zero to the string*/
+                            if (Integer.parseInt(tvDigit.getText().toString()) == 0) {
+                                if (Integer.parseInt(tag) == 0) {
+                                    tvDigit.setText("0");
+                                } else {
+                                    tvDigit.setText(tag);
+                                }
+                            } else {
+                                tvDigit.append(tag);
+                            }
+                        } /** If there are more of one digit we can push any number*/
+                        else {
+                                tvDigit.append(tag);
+                        }
                     }
                 }
+                Log.e("Test sortie", tvDigit.getText().toString());
             }
         };
         btnC.setOnClickListener(myClickButtonListener);
