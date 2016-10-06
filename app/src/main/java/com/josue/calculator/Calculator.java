@@ -8,14 +8,25 @@ package com.josue.calculator;
 public class Calculator {
     private String number;
     private float result;
+    private boolean activeOperator;
 
     public Calculator(String number) {
         this.number = number;
+    }
+    public void setCalculator (String newNumber) {
+        this.number = newNumber;
+    }
+    public boolean getActiveOperator() {
+        return activeOperator;
+    }
+    public void setActiveOperator(boolean activated) {
+        activeOperator = activated;
     }
     public void addOperator(String operator) {
         StringBuffer numberSB = new StringBuffer(number);
         numberSB.append(operator);
         number = numberSB.toString();
+        activeOperator = true;
     }
     public String resultOperation(String number) {
         float number1;

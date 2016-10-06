@@ -1,5 +1,6 @@
 package com.josue.calculator;
 
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,15 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class CalculatorActivity extends AppCompatActivity {
-
+    Calculator calculator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
-        // find the elements
+        // Find elements
         final TextView tvDigit = (TextView) findViewById(R.id.tvDigit);
-
         Button btnC = (Button) findViewById(R.id.btnC);
         Button btnDiv = (Button) findViewById(R.id.btnDiv);
         Button btnMult = (Button) findViewById(R.id.btnMult);
@@ -58,32 +58,48 @@ public class CalculatorActivity extends AppCompatActivity {
         View.OnClickListener myClickButtonListener= new View.OnClickListener() {
             public void onClick(View v) {
                 String tag = (String) v.getTag();
-                if(tag.contains("/")){
-                    Log.e("Test entree", tag);
-                }
-                else if (tag.contains("*")) {
-                    Log.e("Test entree", tag);
-                }
-                else if (tag.contains("-")) {
-                    Log.e("Test entree", "-");
-                }
-                else if (tag.contains("+")) {
-                    Log.e("Test entree", "+");
+
+                /** If operators buttons are pushed | point button pushed */
+                if(tag.matches("[,/*-+,]")){
+                    if (calculator == null) {
+                        calculator = new Calculator(tvDigit.getText().toString());
+                        calculator.addOperator(tag.toString());
+                        calculator.setActiveOperator(true);
+                    }  else {
+                        Log.e("test", "pasa por el operator");
+                        tvDigit.setText(calculator.resultOperation(tvDigit.getText().toString()));
+                        calculator = null;
+                    }
                 }
                 else if (tag.contains(".")) {
-                    Log.e("Test entree", tag.toString());
+                    if (!tvDigit.getText().toString().contains(".")) {
+                        tvDigit.append(tag);
+                    } else {
+                        tvDigit.append("");
+                    }
                 }
+                /** Result */
                 else if (tag.contains("=")) {
-                    Log.e("Test entree", tag.toString());
+                    if (calculator != null) {
+                        tvDigit.setText(calculator.resultOperation(tvDigit.getText().toString()));
+                        calculator = null;
+                    } else {
+                        tvDigit.append("");
+                    }
                 }
+                /** If operators buttons are not pushed */
                 else {
-                    Log.e("Test entree", tag.toString());
                     /** If the C button is pushed*/
                     if (tag == "c") {
                         tvDigit.setText("0");
-                        //Log.e("Test tag length C", String.valueOf(tvDigit.getText().length()));
+                        calculator = null;
                     } /** If any number is pushed*/
                     else if ((Integer.parseInt(tag) >= 0) && (Integer.parseInt(tag) < 10)) {
+                        /** If one operator is attending for other number*/
+                        if (calculator != null && calculator.getActiveOperator() == true) {
+                            calculator.setActiveOperator(false);
+                            tvDigit.setText("0");
+                        }
                             /** If there is one digit*/
                         if (tvDigit.length() == 1) {
                                 /** If the first number is zero we can't add zero to the string*/
@@ -102,7 +118,6 @@ public class CalculatorActivity extends AppCompatActivity {
                         }
                     }
                 }
-                Log.e("Test sortie", tvDigit.getText().toString());
             }
         };
         btnC.setOnClickListener(myClickButtonListener);
