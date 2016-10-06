@@ -1,22 +1,36 @@
 package com.josue.calculator;
 
+
 /**
- * Created by Human Booster on 06/10/2016.
+ * Created by Josué ARREDONDO on 06/10/2016.
  */
 
 public class Calculator {
-    static StringBuffer number;
-    private double result;
+    private String number;
+    private float result;
 
-    public Calculator(StringBuffer number) {
+    public Calculator(String number) {
         this.number = number;
     }
     public void addOperator(String operator) {
-        number.append(operator);
+        StringBuffer numberSB = new StringBuffer(number);
+        numberSB.append(operator);
+        number = numberSB.toString();
     }
     public String resultOperation(String number) {
-
-        return number;
+        float number1;
+        number1 = Float.parseFloat(this.number.replaceAll("[^\\d.]", ""));
+        float number2 = Float.parseFloat(number);
+        if(this.number.contains("*")){
+            result = number1*number2;
+        } else if(this.number.contains("+")){
+            result = number1+number2;
+        } else if(this.number.contains("-")){
+            result = number1-number2;
+        } else if(this.number.contains("/")){
+            result = number1/number2;
+        }
+        return new Float(result).toString().replaceAll("\\.?0*$", "");
     }
     public String getCalculator() {
         return this.number.toString();
