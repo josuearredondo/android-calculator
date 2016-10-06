@@ -17,7 +17,6 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     Calculator calculator = new Calculator();
-
     /** Point */
     @Test
     public void addPointToNoOnlyOneTime() throws Exception {
