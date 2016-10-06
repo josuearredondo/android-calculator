@@ -16,47 +16,50 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
-    Calculator calculator = new Calculator();
-    /** Point */
-    @Test
-    public void addPointToNoOnlyOneTime() throws Exception {
-        // Adding number we can add only one point to the real number
-        Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("45.", calculator.addPoint("45."));
-    }
+    Calculator calculator;
     /** Division */
     @Test
     public void keepNoAndDivisionOperator() throws Exception {
         // When we do the division we need keep value number to use after (result button)
         Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("45+", calculator.addOperator("45/"));
+        calculator = new Calculator(new StringBuffer("45"));
+        calculator.addOperator("/");
+        assertEquals("45/", calculator.getCalculator());
     }
     /** Multiplication */
     @Test
     public void keepNoAndMultiplicationOperator() throws Exception {
         // When we do the multiplication we need keep value number to use after (result button)
         Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("45+", calculator.addOperator("45*"));
+        calculator = new Calculator(new StringBuffer("45"));
+        calculator.addOperator("*");
+        assertEquals("45*", calculator.getCalculator());
     }
     /** Subtraction */
     @Test
     public void keepNoAndSubtractionOperator() throws Exception {
         // When we do the subtraction we need keep value number to use after (result button)
         Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("45+", calculator.addOperator("45-"));
+        calculator = new Calculator(new StringBuffer("45"));
+        calculator.addOperator("-");
+        assertEquals("45-", calculator.getCalculator());
     }
     /** Addition */
     @Test
     public void keepNoAndAdditionOperator() throws Exception {
         // When we do the addition we need keep value number to use after (result button)
         Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("45+", calculator.addOperator("45+"));
+        calculator = new Calculator(new StringBuffer("45"));
+        calculator.addOperator("+");
+        assertEquals("45+", calculator.getCalculator());
     }
     /** Result */
     @Test
     public void receiveNoAndDoOperation() throws Exception {
         // We receive the value number kept of operator before
         Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("90", calculator.addOperator("45+45"));
+        calculator = new Calculator(new StringBuffer("45"));
+        calculator.addOperator("+");
+        assertEquals("90", calculator.resultOperation("45"));
     }
 }
