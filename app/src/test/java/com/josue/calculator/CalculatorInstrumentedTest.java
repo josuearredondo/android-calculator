@@ -1,12 +1,9 @@
 package com.josue.calculator;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
-import android.util.Log;
+
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
+
 
 import static org.junit.Assert.*;
 
@@ -15,8 +12,8 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-@RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
+
+public class CalculatorInstrumentedTest {
     Calculator calculator = new Calculator();
     /** Division */
     @Test
@@ -25,7 +22,8 @@ public class ExampleInstrumentedTest {
         calculator = new Calculator();
         calculator.setNumber("45");
         calculator.addOperator("/");
-        assertEquals("1", calculator.resultOperation("45"));
+        calculator.addOperator("-");
+        assertEquals("0", calculator.resultOperation("45"));
     }
     /** Multiplication */
     @Test
