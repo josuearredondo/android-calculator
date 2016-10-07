@@ -55,7 +55,6 @@ public class CalculatorActivity extends AppCompatActivity {
         btnEight.setTag("8");
         btnNine.setTag("9");
 
-
         View.OnClickListener myClickButtonListener= new View.OnClickListener() {
             public void onClick(View v) {
                 String tag = (String) v.getTag();
@@ -64,7 +63,7 @@ public class CalculatorActivity extends AppCompatActivity {
                 if(tag.matches("[,/*-+,]")){
                     if (calculator == null) {
                         calculator = new Calculator(tvDigit.getText().toString());
-                        calculator.addOperator(tag.toString());
+                        calculator.addOperator(tag);
                         activeOperator = true;
                     }  else {
                         tvDigit.setText(calculator.resultOperation(tvDigit.getText().toString()));
@@ -91,13 +90,13 @@ public class CalculatorActivity extends AppCompatActivity {
                 /** If operators buttons are not pushed */
                 else {
                     /** If the C button is pushed*/
-                    if (tag == "c") {
+                    if (tag.equals("c")) {
                         tvDigit.setText("0");
                         calculator = null;
                     } /** If any number is pushed*/
                     else if ((Integer.parseInt(tag) >= 0) && (Integer.parseInt(tag) < 10)) {
                         /** If one operator is attending for other number*/
-                        if (calculator != null && activeOperator == true) {
+                        if (calculator != null && activeOperator) {
                             activeOperator = false;
                             tvDigit.setText("0");
                         }
