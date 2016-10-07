@@ -12,7 +12,6 @@ public class Calculator {
     public Calculator(String number) {
         this.number = number;
     }
-
     public void addOperator(String operator) {
         StringBuffer numberSB = new StringBuffer(number);
         numberSB.append(operator);
@@ -32,8 +31,5 @@ public class Calculator {
             result = number1/number2;
         }
         return new Float(result).toString().replaceAll("\\.?0*$", "");
-    }
-    public String getCalculator() {
-        return this.number.toString();
     }
 }
