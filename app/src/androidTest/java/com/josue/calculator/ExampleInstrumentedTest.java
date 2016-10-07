@@ -17,13 +17,13 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
-    Calculator calculator;
+    Calculator calculator = new Calculator();
     /** Division */
     @Test
     public void divisionOperator() throws Exception {
         // When we do the division we need keep value number to use after (result button)
-        Context appContext = InstrumentationRegistry.getTargetContext();
-        calculator = new Calculator("45");
+        calculator = new Calculator();
+        calculator.setNumber("45");
         calculator.addOperator("/");
         assertEquals("1", calculator.resultOperation("45"));
     }
@@ -31,8 +31,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void multiplicationOperator() throws Exception {
         // When we do the multiplication we need keep value number to use after (result button)
-        Context appContext = InstrumentationRegistry.getTargetContext();
-        calculator = new Calculator("45");
+        calculator = new Calculator();
+        calculator.setNumber("45");
         calculator.addOperator("*");
         assertEquals("45", calculator.resultOperation("1"));
     }
@@ -40,8 +40,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void subtractionOperator() throws Exception {
         // When we do the subtraction we need keep value number to use after (result button)
-        Context appContext = InstrumentationRegistry.getTargetContext();
-        calculator = new Calculator("45");
+        calculator = new Calculator();
+        calculator.setNumber("45");
         calculator.addOperator("-");
         assertEquals("40", calculator.resultOperation("5"));
     }
@@ -49,8 +49,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void additionOperator() throws Exception {
         // When we do the addition we need keep value number to use after (result button)
-        Context appContext = InstrumentationRegistry.getTargetContext();
-        calculator = new Calculator("45");
+        calculator = new Calculator();
+        calculator.setNumber("45");
         calculator.addOperator("+");
         assertEquals("90", calculator.resultOperation("45"));
     }

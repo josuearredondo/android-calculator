@@ -9,7 +9,9 @@ public class Calculator {
     private String number;
     private float result;
 
-    public Calculator(String number) {
+    public Calculator() {
+    }
+    public void setNumber(String number) {
         this.number = number;
     }
     public void addOperator(String operator) {
