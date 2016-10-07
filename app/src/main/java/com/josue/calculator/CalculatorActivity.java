@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 public class CalculatorActivity extends AppCompatActivity {
     Calculator calculator;
+    boolean activeOperator = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,18 +60,18 @@ public class CalculatorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String tag = (String) v.getTag();
 
-                /** If operators buttons are pushed | point button pushed */
+                /** If operators buttons are pushed */
                 if(tag.matches("[,/*-+,]")){
                     if (calculator == null) {
                         calculator = new Calculator(tvDigit.getText().toString());
                         calculator.addOperator(tag.toString());
-                        calculator.setActiveOperator(true);
+                        activeOperator = true;
                     }  else {
-                        Log.e("test", "pasa por el operator");
                         tvDigit.setText(calculator.resultOperation(tvDigit.getText().toString()));
                         calculator = null;
                     }
                 }
+                /** If point button pushed */
                 else if (tag.contains(".")) {
                     if (!tvDigit.getText().toString().contains(".")) {
                         tvDigit.append(tag);
@@ -96,8 +97,8 @@ public class CalculatorActivity extends AppCompatActivity {
                     } /** If any number is pushed*/
                     else if ((Integer.parseInt(tag) >= 0) && (Integer.parseInt(tag) < 10)) {
                         /** If one operator is attending for other number*/
-                        if (calculator != null && calculator.getActiveOperator() == true) {
-                            calculator.setActiveOperator(false);
+                        if (calculator != null && activeOperator == true) {
+                            activeOperator = false;
                             tvDigit.setText("0");
                         }
                             /** If there is one digit*/
