@@ -1,5 +1,17 @@
 apply plugin: 'com.android.application'
+apply plugin: 'sonar-runner'
 
+sonarRunner {
+    sonarProperties {
+        property "sonar.host.url", "http://localhost:9000" // Address of Sonar server
+        property "sonar.sources", "src" // Sources
+        property "sonar.projectName", "Calculator" // Calculator
+        property "sonar.projectVersion", "0.2-SNAPSHOT" // Version of your project
+        property "sonar.projectDescription", "Calculator project analyse" // Description of your project
+        property "sonar.profile", "Android Lint" // To use the profile Android Lint
+        property "sonar.import_unknown_files", true // To allow Sonar to verify the XML's fil
+    }
+}
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
