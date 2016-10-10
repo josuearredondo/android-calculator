@@ -23,8 +23,8 @@
             android:id="@+id/tvDigit"
             android:text="0"
             android:gravity="right"
-            android:paddingTop="15sp"
-            android:textSize="35sp">
+            android:paddingTop="@dimen/padding_top_tv"
+            android:textSize="@dimen/text_size">
         </TextView>
         <Button
             android:layout_height="match_parent"
