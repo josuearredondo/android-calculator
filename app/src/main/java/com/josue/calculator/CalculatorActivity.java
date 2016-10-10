@@ -9,13 +9,14 @@ import android.widget.TextView;
 public class CalculatorActivity extends AppCompatActivity {
     Calculator calculator;
     boolean activeOperator = false;
+    TextView tvDigit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
-
         // Find elements
-        final TextView tvDigit = (TextView) findViewById(R.id.tvDigit);
+        tvDigit = (TextView) findViewById(R.id.tvDigit);
+
         Button btnC = (Button) findViewById(R.id.btnC);
         Button btnDiv = (Button) findViewById(R.id.btnDiv);
         Button btnMult = (Button) findViewById(R.id.btnMult);
@@ -33,6 +34,24 @@ public class CalculatorActivity extends AppCompatActivity {
         Button btnSeven = (Button) findViewById(R.id.btnSeven);
         Button btnEight = (Button) findViewById(R.id.btnEight);
         Button btnNine = (Button) findViewById(R.id.btnNine);
+
+        Button btnSIN = (Button) findViewById(R.id.btnSIN);
+        Button btnCOS = (Button) findViewById(R.id.btnCOS);
+        Button btnTAN = (Button) findViewById(R.id.btnTAN);
+        Button btnXp2 = (Button) findViewById(R.id.btnXp2);
+        Button btnSINm1 = (Button) findViewById(R.id.btnSINm1);
+        Button btnCOSm1 = (Button) findViewById(R.id.btnCOSm1);
+        Button btnTANm1 = (Button) findViewById(R.id.btnTANm1);
+        Button btnXp3 = (Button) findViewById(R.id.btnXp3);
+        Button btnEpX = (Button) findViewById(R.id.btnEpX);
+        Button btn10pX = (Button) findViewById(R.id.btn10pX);
+        Button btn1DivX = (Button) findViewById(R.id.btn1DivX);
+        Button btnXpY = (Button) findViewById(R.id.btnXpY);
+        Button btnLN = (Button) findViewById(R.id.btnLN);
+        Button btnLOG = (Button) findViewById(R.id.btnLOG);
+        Button btnSQRL = (Button) findViewById(R.id.btnSQRL);
+        Button btnPlusMinus = (Button) findViewById(R.id.btnPlusMinus);
+
         btnC.setTag("c");
         btnDiv.setTag("/");
         btnMult.setTag("*");
@@ -51,10 +70,26 @@ public class CalculatorActivity extends AppCompatActivity {
         btnEight.setTag("8");
         btnNine.setTag("9");
 
+        /*btnSIN.setTag("sin");
+        btnCOS.setTag("cos");
+        btnTAN.setTag("tan");
+        btnXp2.setTag("x2");
+        btnSINm1.setTag("sin-1");
+        btnCOSm1.setTag("cos-1");
+        btnTANm1.setTag("tan-1");
+        btnXp3.setTag("x3");
+        btnEpX.setTag("E^X");
+        btn10pX.setTag("10^X");
+        btn1DivX.setTag("1/X");
+        btnXpY.setTag("X^Y");
+        btnLN.setTag("ln");
+        btnLOG.setTag("log");
+        btnSQRL.setTag("sqrl");
+        btnPlusMinus.setTag("+/-");*/
+
         View.OnClickListener myClickButtonListener= new View.OnClickListener() {
             public void onClick(View v) {
                 String tag = (String) v.getTag();
-
                 /** If operators buttons are pushed */
                 if(tag.matches("[,/*-+,]")){
                     if (calculator == null) {
@@ -116,14 +151,15 @@ public class CalculatorActivity extends AppCompatActivity {
                     }
                 }
             }
+
         };
         btnC.setOnClickListener(myClickButtonListener);
+        btnEqual.setOnClickListener(myClickButtonListener);
         btnDiv.setOnClickListener(myClickButtonListener);
         btnMult.setOnClickListener(myClickButtonListener);
         btnAdd.setOnClickListener(myClickButtonListener);
         btnSub.setOnClickListener(myClickButtonListener);
         btnComma.setOnClickListener(myClickButtonListener);
-        btnEqual.setOnClickListener(myClickButtonListener);
         btnZero.setOnClickListener(myClickButtonListener);
         btnOne.setOnClickListener(myClickButtonListener);
         btnTwo.setOnClickListener(myClickButtonListener);
@@ -134,5 +170,18 @@ public class CalculatorActivity extends AppCompatActivity {
         btnSeven.setOnClickListener(myClickButtonListener);
         btnEight.setOnClickListener(myClickButtonListener);
         btnNine.setOnClickListener(myClickButtonListener);
+
+        /*ViewGroup group1 = (ViewGroup)findViewById(R.id.linearLayout1);
+        ViewGroup group2 = (ViewGroup)findViewById(R.id.linearLayout1);
+        ViewGroup group3 = (ViewGroup)findViewById(R.id.linearLayout1);
+        ViewGroup group4 = (ViewGroup)findViewById(R.id.linearLayout1);
+        View v;
+        for(int i = 0; i < group1.getChildCount(); i++) {
+            v = group1.getChildAt(i);
+            if(v instanceof Button) v.setOnClickListener(myClickButtonListener);
+        }*/
+
     }
+
+
 }

@@ -15,7 +15,7 @@
         android:layout_weight="1"
         android:id="@+id/linearLayout1">
         <TextView
-            android:layout_weight="3"
+            android:layout_weight="3.5"
             android:freezesText="true"
             android:layout_width="0dp"
             android:textColor="@color/colorTextCalculator"
@@ -30,7 +30,7 @@
         <Button
             android:layout_height="match_parent"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="C"
             android:textSize="8pt"
             android:id="@+id/btnC">
@@ -42,9 +42,17 @@
         android:layout_height="0dp"
         android:id="@+id/linearLayout2">
         <fragment
-            android:id="@+id/simpleFragment"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="4"
             android:layout_height="match_parent"
+            android:id="@+id/scientistFragment"
+            class="com.josue.calculator.ScientistFragment"
+            tools:layout="@layout/fragment_scientist"></fragment>
+        <fragment
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:id="@+id/simpleFragment"
             class="com.josue.calculator.SimpleFragment"
             tools:layout="@layout/fragment_simple"></fragment>
     </LinearLayout>
