@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+
+// Sonar runner reports for standard unit tests
 apply plugin: 'sonar-runner'
 
 sonarRunner {
