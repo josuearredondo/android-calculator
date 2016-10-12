@@ -7,29 +7,30 @@ package com.josue.calculator;
 
 public class Calculator {
     private String number;
+    private String operator;
     private float result;
 
-    public Calculator() {
-    }
+    public Calculator() {}
+
     public void setNumber(String number) {
         this.number = number;
     }
-    public void addOperator(String operator) {
-        StringBuffer numberSB = new StringBuffer(number);
-        numberSB.append(operator);
-        number = numberSB.toString();
-    }
+
+    public void setOperator(String operator) { this.operator = operator; }
+
+    public String getOperator() {return operator;}
+
     public String resultOperation(String number) {
         float number1;
-        number1 = Float.parseFloat(this.number.replaceAll("[^\\d.]", ""));
+        number1 = Float.parseFloat(this.number);
         float number2 = Float.parseFloat(number);
-        if(this.number.contains("*")){
+        if(this.operator.equals("*")){
             result = number1*number2;
-        } else if(this.number.contains("+")){
+        } else if(this.operator.equals("+")){
             result = number1+number2;
-        } else if(this.number.contains("-")){
+        } else if(this.operator.equals("-")){
             result = number1-number2;
-        } else if(this.number.contains("/")){
+        } else if(this.operator.equals("/")){
             result = number1/number2;
         }
         return new Float(result).toString().replaceAll("\\.?0*$", "");
